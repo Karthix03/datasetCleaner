@@ -1,12 +1,6 @@
 import streamlit as st
 import pandas as pd
-import os
-
-# google.generativeai is optional; gracefully handle if it's not installed so the app can run
-try:
-    import google.generativeai as genai
-except Exception:
-    genai = None
+import google.generativeai as genai
 import plotly.express as px
 import plotly.graph_objects as go
 from plotly.subplots import make_subplots
@@ -100,18 +94,8 @@ st.markdown("""
 # Initialize API
 @st.cache_resource
 def init_genai():
-    # If the library isn't installed, skip initialization and disable AI features
-    if genai is None:
-        return False
-
     try:
-        # Prefer an environment variable for the API key
-        api_key = os.environ.get('GEMINI_API_KEY')
-        if api_key:
-            genai.configure(api_key=api_key)
-        else:
-            # Fallback to the existing hardcoded key (kept for backward compatibility)
-            genai.configure(api_key="AIzaSyC5K6h7AhXZjj4jtHlDzPlPW-qXGDNwzNM")
+        genai.configure(api_key="AIzaSyAM5D9fZdZSyBnt01IIAATBJ1rVqL6QwIk")
         return True
     except Exception as e:
         st.error(f"Error initializing Gemini AI: {str(e)}")
