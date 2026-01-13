@@ -95,7 +95,7 @@ st.markdown("""
 @st.cache_resource
 def init_genai():
     try:
-        genai.configure(api_key="AIzaSyAM5D9fZdZSyBnt01IIAATBJ1rVqL6QwIk")
+        genai.configure(api_key="AIzaSyArId3A5ZqJpnYIwlW3Z3UlMNzREt_mJrU")
         return True
     except Exception as e:
         st.error(f"Error initializing Gemini AI: {str(e)}")
@@ -210,7 +210,6 @@ def clean_dataset(df, remove_duplicates=True, remove_nulls=True, remove_poisoned
     
     if remove_poisoned:
         before_poison = len(df_cleaned)
-        # Remove rows with suspicious content
         for col in df_cleaned.select_dtypes(include=['object']):
             if col in df_cleaned.columns:
                 df_cleaned = df_cleaned[~df_cleaned[col].astype(str).str.contains(
@@ -262,7 +261,7 @@ def chatbot_response(user_input, df=None):
     """
 
     try:
-        response = genai.GenerativeModel("gemini-1.5-flash").generate_content(prompt)
+        response = genai.GenerativeModel("gemini-2.5-flash").generate_content(prompt)
         return response.text
     except Exception as e:
         return f"❌ Error generating response: {str(e)}"
