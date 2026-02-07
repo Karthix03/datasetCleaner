@@ -95,7 +95,7 @@ st.markdown("""
 @st.cache_resource
 def init_genai():
     try:
-        genai.configure(api_key="AIzaSyACj6iDWoi9U1NICHNw0WoQbRhNOPJ0hE0")
+        genai.configure(api_key="enter your api key here")
         return True
     except Exception as e:
         st.error(f"Error initializing Gemini AI: {str(e)}")
@@ -262,7 +262,7 @@ def chatbot_response(user_input, df=None):
     """
 
     try:
-        response = genai.GenerativeModel("gemini-1.5-flash").generate_content(prompt)
+        response = genai.GenerativeModel("gemini-2.5-flash").generate_content(prompt)
         return response.text
     except Exception as e:
         return f"❌ Error generating response: {str(e)}"
